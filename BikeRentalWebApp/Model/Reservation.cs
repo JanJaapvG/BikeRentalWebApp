@@ -8,29 +8,31 @@ namespace BikeRental.Model
     {
         public int Id { get; set; }
 
-        [ForeignKey("Customer")]
-        public int Customer_Id { get; set; }
-        public Customer Customer { get; set; }
+        public DateTime Start { get; set; }
+
+        public DateTime End { get; set; }
 
         [ForeignKey("Bike")]
         public int Bike_Id { get; set; }
         public Bike Bike { get; set; }
 
+        [ForeignKey("Customer")]
+        public int Customer_Id { get; set; }
+        public Customer Customer { get; set; }
+
         [ForeignKey("Store")]
         public int Store_Id { get; set; }
         public Store Store { get; set; }
 
-        [ForeignKey("Store")]
-        public int PickupStore_Id { get; set; }
-        public Store PickupStore { get; set; }
-
-        [ForeignKey("Store")]
+        [ForeignKey("DropoffStore")]
         public int DropoffStore_Id { get; set; }
         public Store DropoffStore { get; set; }
 
-        public DateTime Start { get; set; }
+        [ForeignKey("PickupStore")]
+        public int PickupStore_Id { get; set; }
+        public Store PickupStore { get; set; }
 
-        public DateTime End { get; set; }
+
 
     }
 }

@@ -17,8 +17,6 @@ namespace BikeRental.Model
 
         public int MaxCapacity { get; set; }
 
-        [ForeignKey("Bike")]
-        public int Bike_Id { get; set; }
         public ICollection<Bike> Bikes { get; set; }
 
         public ICollection<Reservation> Reservations { get; set; }
