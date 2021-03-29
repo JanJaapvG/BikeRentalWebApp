@@ -13,11 +13,13 @@ namespace BikeRentalWebApp.ViewModels
     {
         private readonly BikeRentalContext _db = new BikeRentalContext();
 
-        public SelectList AllStores { get; set; }
-
-        public SelectList AllBikes { get; set; }
         public Reservation Reservations { get; set; }
+        public SelectList AllStores { get; set; }
+        public SelectList AllBikes { get; set; }
         public Customer Customer { get; set; }
+        public DateTime Start { get; set; }
+        public DateTime End { get; set; }
+
 
         public ReservationsCreateViewModel()
         {
