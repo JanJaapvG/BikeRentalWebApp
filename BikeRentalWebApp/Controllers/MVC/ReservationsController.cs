@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using BikeRental.Model;
 using BikeRentalWebApp.Model;
+using BikeRentalWebApp.ViewModels;
 
 namespace BikeRentalWebApp.Controllers.MVC
 {
@@ -40,12 +41,8 @@ namespace BikeRentalWebApp.Controllers.MVC
         // GET: Reservations/Create
         public ActionResult Create()
         {
-            ViewBag.Bike_Id = new SelectList(db.Bikes, "Id", "Name");
-            ViewBag.Customer_Id = new SelectList(db.Customers, "Id", "FirstName");
-            ViewBag.DropoffStore_Id = new SelectList(db.Stores, "Id", "Name");
-            ViewBag.PickupStore_Id = new SelectList(db.Stores, "Id", "Name");
-            ViewBag.Store_Id = new SelectList(db.Stores, "Id", "Name");
-            return View();
+            
+            return View(new ReservationsCreateViewModel());
         }
 
         // POST: Reservations/Create
