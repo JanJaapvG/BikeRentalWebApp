@@ -13,7 +13,7 @@ namespace BikeRentalWebApp.Controllers.MVC
 {
     public class ReservationsController : Controller
     {
-        private BikeRentalContext db = new BikeRentalContext();
+        private readonly BikeRentalContext db = new BikeRentalContext();
 
         // GET: Reservations
         public ActionResult Index()

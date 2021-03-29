@@ -15,7 +15,7 @@ namespace BikeRentalWebApp.Controllers.API
 {
     public class StoresController : ApiController
     {
-        private BikeRentalContext db = new BikeRentalContext();
+        private readonly BikeRentalContext db = new BikeRentalContext();
 
         // GET: api/Stores
         public IQueryable<Store> GetStores()
