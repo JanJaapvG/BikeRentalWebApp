@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace BikeRental.Model
@@ -9,12 +10,22 @@ namespace BikeRental.Model
     {
         public int Id { get; set; }
 
+        [Required]
+        [DisplayName("Winkelnaam")]
+        [Range(0, 100)]
         public string Name { get; set; }
 
+        [DisplayName("Adres")]
+        [Range(0, 200)]
         public string Adress { get; set; }
 
+        [DisplayName("Stad")]
+        [Range(0, 50)]
         public string City { get; set; }
 
+        [Required]
+        [DisplayName("Maximale opslag")]
+        [Range(0, 5)]
         public int MaxCapacity { get; set; }
 
         public ICollection<Bike> Bikes { get; set; }
