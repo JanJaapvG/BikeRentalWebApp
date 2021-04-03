@@ -6,99 +6,75 @@
 
 <h2>Create</h2>
 
-        @using (Html.BeginForm())
-        {
-                @Html.AntiForgeryToken()
 
-<div class="form-horizontal">
-    <h4>Reservation</h4>
-    <hr />
-    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
 
-    @*<div class="form-group">
-        @Html.LabelFor(model => model.Reservations.Store_Id, "Winkel", htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.DropDownList("Store_Id", Model.AllStores, htmlAttributes: new { @class = "form-control" })
-            @Html.ValidationMessageFor(model => model.Reservations.Store_Id, "", new { @class = "text-danger" })
-        </div>
-    </div>*@
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.Reservations.Bike_Id, "Fiets", htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.DropDownList("Bike_Id", Model.AllBikes, htmlAttributes: new { @class = "form-control" })
-            @Html.ValidationMessageFor(model => model.AllBikes, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.Start, "Vanaf: ", htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.Start, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.Start, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.End, "Tot: ", htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.End, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.End, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    @*<div class="form-group">
-        @Html.LabelFor(model => model.Reservations.DropoffStore_Id, "Afleveren bij: ", htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.DropDownList("DropoffStore_Id", Model.AllStores, htmlAttributes: new { @class = "form-control" })
-            @Html.ValidationMessageFor(model => model.Reservations.DropoffStore_Id, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.Reservations.PickupStore_Id, "Ophalen bij: ", htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.DropDownList("PickupStore_Id", Model.AllStores, htmlAttributes: new { @class = "form-control" })
-            @Html.ValidationMessageFor(model => model.Reservations.PickupStore_Id, "", new { @class = "text-danger" })
-        </div>
-    </div>*@
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.Customer.FirstName, "Voornaam: ", htmlAttributes: new { @clas = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.Customer.FirstName, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.Customer.FirstName, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.Customer.LastName, "Achternaam: ", htmlAttributes: new { @clas = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.Customer.LastName, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.Customer.LastName, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.Customer.Email, "E-mail", htmlAttributes: new { @clas = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.Customer.Email, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.Customer.Email, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="Create" class="btn btn-default" />
-        </div>
-    </div>
-</div>
-            }
-
-        <div>
-                @Html.ActionLink("Back to List", "Index")
+    <div class="form-horizontal">
+        <h4>Reservation</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.Start, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Start, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Start, "", new { @class = "text-danger" })
             </div>
+        </div>
 
-        @section Scripts {
-            @Scripts.Render("~/bundles/jqueryval")
-        }
+        <div class="form-group">
+            @Html.LabelFor(model => model.End, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.End, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.End, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Reservation.Bike, "Bike_Id", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("Bike_Id", Model.AllBikes, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Reservation.Bike, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Reservation.Customer, "Customer_Id", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("Customer_Id", Model.AllCustomers, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Reservation.Customer, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Reservation.PickupStore, "PickupStore_Id", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("PickupStore_Id", Model.AllStores, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Reservation.PickupStore, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Reservation.DropoffStore, "DropoffStore_Id", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("DropoffStore_Id", Model.AllStores, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Reservation.DropoffStore, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

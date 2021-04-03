@@ -20,10 +20,6 @@ namespace BikeRental.Model
         public int Customer_Id { get; set; }
         public Customer Customer { get; set; }
 
-        [ForeignKey("Store")]
-        public int Store_Id { get; set; }
-        public Store Store { get; set; }
-
         [ForeignKey("DropoffStore")]
         public int DropoffStore_Id { get; set; }
         public Store DropoffStore { get; set; }

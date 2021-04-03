@@ -13,10 +13,10 @@ namespace BikeRentalWebApp.ViewModels
     {
         private readonly BikeRentalContext _db = new BikeRentalContext();
 
-        public Reservation Reservations { get; set; }
+        public Reservation Reservation { get; set; }
         public SelectList AllStores { get; set; }
         public SelectList AllBikes { get; set; }
-        public Customer Customer { get; set; }
+        public SelectList AllCustomers { get; set; }
         public DateTime Start { get; set; }
         public DateTime End { get; set; }
 
@@ -25,7 +25,13 @@ namespace BikeRentalWebApp.ViewModels
         {
             AllStores = new SelectList(_db.Stores, "Id", "Name");
             AllBikes = new SelectList(_db.Bikes, "Id", "Name");
-
+            AllCustomers = new SelectList(_db.Customers, "Id", "Email");
         }
+
+        //public void Save()
+        //{
+        //    _db.Reservations.Add(Reservation);
+        //    _db.SaveChanges();
+        //}
     }
 }

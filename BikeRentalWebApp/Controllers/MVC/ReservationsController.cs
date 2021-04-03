@@ -14,12 +14,12 @@ namespace BikeRentalWebApp.Controllers.MVC
 {
     public class ReservationsController : Controller
     {
-        private readonly BikeRentalContext db = new BikeRentalContext();
+        private BikeRentalContext db = new BikeRentalContext();
 
         // GET: Reservations
         public ActionResult Index()
         {
-            var reservations = db.Reservations.Include(r => r.Bike).Include(r => r.Customer).Include(r => r.DropoffStore).Include(r => r.PickupStore).Include(r => r.Store);
+            var reservations = db.Reservations.Include(r => r.Bike).Include(r => r.Customer).Include(r => r.DropoffStore).Include(r => r.PickupStore);
             return View(reservations.ToList());
         }
 
@@ -41,31 +41,25 @@ namespace BikeRentalWebApp.Controllers.MVC
         // GET: Reservations/Create
         public ActionResult Create()
         {
-            
             return View(new ReservationsCreateViewModel());
         }
 
         // POST: Reservations/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Start,End,Bike_Id,Customer_Id,Store_Id,DropoffStore_Id,PickupStore_Id")] Reservation reservation)
+        public ActionResult Create(Reservation reservation)
         {
-            if (ModelState.IsValid)
-            {
-                db.Reservations.Add(reservation);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-
-            ViewBag.Bike_Id = new SelectList(db.Bikes, "Id", "Name", reservation.Bike_Id);
-            ViewBag.Customer_Id = new SelectList(db.Customers, "Id", "FirstName", reservation.Customer_Id);
-            ViewBag.DropoffStore_Id = new SelectList(db.Stores, "Id", "Name", reservation.DropoffStore_Id);
-            ViewBag.PickupStore_Id = new SelectList(db.Stores, "Id", "Name", reservation.PickupStore_Id);
-            ViewBag.Store_Id = new SelectList(db.Stores, "Id", "Name", reservation.Store_Id);
-            return View(reservation);
+            db.Reservations.Add(reservation);
+            db.SaveChanges();
+            return RedirectToAction("Index");
         }
+
+        // POST: Reservations/Create
+        //[HttpPost]
+        //public ActionResult Create(ReservationsCreateViewModel vm)
+        //{
+        //    vm.Save();
+        //    return RedirectToAction("Index");
+        //}
 
         // GET: Reservations/Edit/5
         public ActionResult Edit(int? id)
@@ -83,7 +77,6 @@ namespace BikeRentalWebApp.Controllers.MVC
             ViewBag.Customer_Id = new SelectList(db.Customers, "Id", "FirstName", reservation.Customer_Id);
             ViewBag.DropoffStore_Id = new SelectList(db.Stores, "Id", "Name", reservation.DropoffStore_Id);
             ViewBag.PickupStore_Id = new SelectList(db.Stores, "Id", "Name", reservation.PickupStore_Id);
-            ViewBag.Store_Id = new SelectList(db.Stores, "Id", "Name", reservation.Store_Id);
             return View(reservation);
         }
 
@@ -92,7 +85,7 @@ namespace BikeRentalWebApp.Controllers.MVC
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Start,End,Bike_Id,Customer_Id,Store_Id,DropoffStore_Id,PickupStore_Id")] Reservation reservation)
+        public ActionResult Edit([Bind(Include = "Id,Start,End,Bike_Id,Customer_Id,DropoffStore_Id,PickupStore_Id")] Reservation reservation)
         {
             if (ModelState.IsValid)
             {
@@ -104,7 +97,6 @@ namespace BikeRentalWebApp.Controllers.MVC
             ViewBag.Customer_Id = new SelectList(db.Customers, "Id", "FirstName", reservation.Customer_Id);
             ViewBag.DropoffStore_Id = new SelectList(db.Stores, "Id", "Name", reservation.DropoffStore_Id);
             ViewBag.PickupStore_Id = new SelectList(db.Stores, "Id", "Name", reservation.PickupStore_Id);
-            ViewBag.Store_Id = new SelectList(db.Stores, "Id", "Name", reservation.Store_Id);
             return View(reservation);
         }
 
