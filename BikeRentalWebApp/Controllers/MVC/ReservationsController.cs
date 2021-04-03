@@ -53,13 +53,13 @@ namespace BikeRentalWebApp.Controllers.MVC
             return RedirectToAction("Index");
         }
 
-        // POST: Reservations/Create
+        //POST: Reservations/Create
         //[HttpPost]
-        //public ActionResult Create(ReservationsCreateViewModel vm)
-        //{
-        //    vm.Save();
-        //    return RedirectToAction("Index");
-        //}
+        // public ActionResult Create(ReservationsCreateViewModel vm)
+        // {
+        //     vm.Save();
+        //     return RedirectToAction("Index");
+        // }
 
         // GET: Reservations/Edit/5
         public ActionResult Edit(int? id)
