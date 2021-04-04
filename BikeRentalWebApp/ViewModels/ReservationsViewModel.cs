@@ -41,7 +41,6 @@ namespace BikeRentalWebApp.ViewModels
             Customer = new Customer();
         }
 
-
         //public void Save()
         //{ 
         //    _db.Reservations.Add(Reservation);
