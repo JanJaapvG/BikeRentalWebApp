@@ -19,6 +19,7 @@ namespace BikeRentalWebApp.ViewModels
         public Store Store { get; set; }
         public SelectList Stores { get; set; }
         public SelectList Customers { get; set; }
+        public Customer Customer { get; set; }
         public SelectList SelectedBike { get; set; }
         public SelectList SelectedStore { get; set; }
         public DateTime Start { get; set; }
@@ -35,9 +36,9 @@ namespace BikeRentalWebApp.ViewModels
             Bike = _db.Bikes.Find(id);
             Store = _db.Stores.Find(Bike.Store_Id);
             Stores = new SelectList(_db.Stores, "Id", "Name");
-            Customers = new SelectList(_db.Customers, "Id", "Email");
             SelectedBike = new SelectList(_db.Bikes, "Id", "Name", selectedValue: id);
             SelectedStore = new SelectList(_db.Stores, "Id", "Name", selectedValue: Store.Id );
+            Customer = new Customer();
         }
 
 

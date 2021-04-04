@@ -12,11 +12,11 @@ namespace BikeRental.Model
         public int Id { get; set; }
 
         [DisplayName("Voornaam")]
-        [Range(0, 100)]
+        [StringLength(100)]
         public string FirstName { get; set; }
 
         [DisplayName("Achternaam")]
-        [Range(0, 100)]
+        [StringLength(100)]
         public string LastName { get; set; }
 
         [DisplayName("Geslacht")]

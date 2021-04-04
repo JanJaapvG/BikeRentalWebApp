@@ -12,15 +12,15 @@ namespace BikeRental.Model
 
         [Required]
         [DisplayName("Winkelnaam")]
-        [Range(0, 100)]
+        [StringLength(100)]
         public string Name { get; set; }
 
         [DisplayName("Adres")]
-        [Range(0, 200)]
+        [StringLength(200)]
         public string Adress { get; set; }
 
         [DisplayName("Stad")]
-        [Range(0, 50)]
+        [StringLength(100)]
         public string City { get; set; }
 
         [Required]

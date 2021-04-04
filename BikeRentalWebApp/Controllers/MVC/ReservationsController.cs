@@ -45,10 +45,32 @@ namespace BikeRentalWebApp.Controllers.MVC
 
         // POST: Reservations/Create
         [HttpPost]
-        public ActionResult Create(Reservation reservation)
+        public ActionResult Create(Customer customer, Reservation reservation)
         {
-            db.Reservations.Add(reservation);
-            db.SaveChanges();
+            Customer existingCustomer = (Customer)db.Customers.Where(e => e.Email == customer.Email).FirstOrDefault();
+            if (existingCustomer == null)
+            {
+                customer.Store_Id = reservation.PickupStore_Id;
+                db.Customers.Add(customer);
+                db.SaveChanges();
+
+                db.Customers.Find(customer.Id);
+
+                reservation.Customer = customer;
+                reservation.Customer_Id = customer.Id;
+
+                db.Reservations.Add(reservation);
+                db.SaveChanges();
+            } else
+            {
+                customer = existingCustomer;
+                reservation.Customer = customer;
+                reservation.Customer_Id = customer.Id;
+
+                db.Reservations.Add(reservation);
+                db.SaveChanges();
+            }
+
             return RedirectToAction("Index");
         }
 
