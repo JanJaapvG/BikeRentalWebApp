@@ -16,16 +16,16 @@
             @Html.ActionLink("Store", "Index", new { sortOrder = Model.StoreSort })
         </th>
         <th>
-            First Name
+            Winkel
         </th>
-        <th>
-            @Html.ActionLink("BikeType", "Index", new { sortOrder = Model.BikeTypeSort })
-        </th>
-        <th>Type</th>
         <th>
             @Html.ActionLink("Gender", "Index", new { sortOrder = Model.GenderSort })
         </th>
         <th>Geslacht</th>
+        <th>
+            @Html.ActionLink("BikeType", "Index", new { sortOrder = Model.BikeTypeSort })
+        </th>
+        <th>Type</th>]
     </tr>*@
 
     @foreach (var item in Model.Bikes)
@@ -39,6 +39,9 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Gender)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Type)
             </td>
             <td>
                 @Html.ActionLink("Huur fiets", "Create", new { id = item.Id })
