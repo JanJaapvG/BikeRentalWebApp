@@ -19,8 +19,7 @@ namespace BikeRentalWebApp.Controllers.MVC
         // GET: Reservations
         public ActionResult Index()
         {
-            var reservations = db.Reservations.Include(r => r.Bike).Include(r => r.Customer).Include(r => r.DropoffStore).Include(r => r.PickupStore);
-            return View(reservations.ToList());
+            return View(new ReservationsViewModel());
         }
 
         // GET: Reservations/Details/5
@@ -38,10 +37,10 @@ namespace BikeRentalWebApp.Controllers.MVC
             return View(reservation);
         }
 
-        // GET: Reservations/Create
-        public ActionResult Create()
+        // GET: Reservations/Create/
+        public ActionResult Create(int? id)
         {
-            return View(new ReservationsCreateViewModel());
+            return View(new ReservationsViewModel((int)id));
         }
 
         // POST: Reservations/Create
@@ -55,7 +54,7 @@ namespace BikeRentalWebApp.Controllers.MVC
 
         //POST: Reservations/Create
         //[HttpPost]
-        // public ActionResult Create(ReservationsCreateViewModel vm)
+        // public ActionResult Create(ReservationsViewModel vm)
         // {
         //     vm.Save();
         //     return RedirectToAction("Index");

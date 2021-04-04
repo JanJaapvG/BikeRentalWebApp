@@ -24,7 +24,7 @@ namespace BikeRental.Model
 
         [Required]
         [ForeignKey("Bike")]
-        [DisplayName("Bike type")]
+        [DisplayName("Fiets")]
         public int Bike_Id { get; set; }
         public Bike Bike { get; set; }
 
@@ -37,13 +37,13 @@ namespace BikeRental.Model
 
         [Required]
         [ForeignKey("DropoffStore")]
-        [DisplayName("Dropoff winkel")]
+        [DisplayName("Inlever winkel")]
         public int DropoffStore_Id { get; set; }
         public Store DropoffStore { get; set; }
 
         [Required]
         [ForeignKey("PickupStore")]
-        [DisplayName("Afhaalwinkel")]
+        [DisplayName("Afhaal winkel")]
         public int PickupStore_Id { get; set; }
         public Store PickupStore { get; set; }
 

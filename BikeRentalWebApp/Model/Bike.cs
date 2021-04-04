@@ -50,7 +50,7 @@ namespace BikeRental.Model
         public Category Type { get; set; }
 
         [Required]
-        [DisplayName("Gender")]
+        [DisplayName("Geslacht")]
         public Gender Gender { get; set; }
 
         [Required]
