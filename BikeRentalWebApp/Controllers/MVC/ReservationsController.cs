@@ -45,11 +45,12 @@ namespace BikeRentalWebApp.Controllers.MVC
 
         // POST: Reservations/Create
         [HttpPost]
-        public ActionResult Create(Customer customer, Reservation reservation)
+        public ActionResult Create(Customer customer, Reservation reservation, Bike bike, Store store)
         {
             Customer existingCustomer = (Customer)db.Customers.Where(e => e.Email == customer.Email).FirstOrDefault();
             if (existingCustomer == null)
             {
+                reservation.PickupStore_Id = store.Id;
                 customer.Store_Id = reservation.PickupStore_Id;
                 db.Customers.Add(customer);
                 db.SaveChanges();
@@ -58,14 +59,18 @@ namespace BikeRentalWebApp.Controllers.MVC
 
                 reservation.Customer = customer;
                 reservation.Customer_Id = customer.Id;
+                reservation.Bike_Id = bike.Id;
 
                 db.Reservations.Add(reservation);
                 db.SaveChanges();
-            } else
+            }
+            else
             {
                 customer = existingCustomer;
                 reservation.Customer = customer;
                 reservation.Customer_Id = customer.Id;
+                reservation.Bike_Id = bike.Id;
+                reservation.PickupStore_Id = store.Id;
 
                 db.Reservations.Add(reservation);
                 db.SaveChanges();
@@ -76,11 +81,11 @@ namespace BikeRentalWebApp.Controllers.MVC
 
         //POST: Reservations/Create
         //[HttpPost]
-        // public ActionResult Create(ReservationsViewModel vm)
-        // {
-        //     vm.Save();
-        //     return RedirectToAction("Index");
-        // }
+        //public ActionResult Create(ReservationsViewModel vm)
+        //{
+        //    vm.Save();
+        //    return RedirectToAction("Index");
+        //}
 
         // GET: Reservations/Edit/5
         public ActionResult Edit(int? id)
