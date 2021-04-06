@@ -22,23 +22,29 @@
 
     @foreach (var item in Model.Bikes)
     {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Store.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Gender)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Type)
-            </td>
-            <td>
-                @Html.ActionLink("Huur fiets", "Create", new { id = item.Id })
-            </td>
-        </tr>
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Store.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Gender)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Type)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DailyRate) per dag
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.HourRate) per uur
+        </td>
+        <td>
+            @Html.ActionLink("Huur fiets", "Create", new { id = item.Id })
+        </td>
+    </tr>
     }
 
 </table>
