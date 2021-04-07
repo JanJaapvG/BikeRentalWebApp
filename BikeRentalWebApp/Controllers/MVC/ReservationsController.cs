@@ -45,34 +45,34 @@ namespace BikeRentalWebApp.Controllers.MVC
 
         // POST: Reservations/Create
         [HttpPost]
-        public ActionResult Create(Customer customer, Reservation reservation, Bike bike, Store store)
+        public ActionResult Create(ReservationsViewModel vm)
         {
-            Customer existingCustomer = (Customer)db.Customers.Where(e => e.Email == customer.Email).FirstOrDefault();
+            Customer existingCustomer = db.Customers.Where(e => e.Email == vm.Customer.Email).FirstOrDefault();
             if (existingCustomer == null)
             {
-                reservation.PickupStore_Id = store.Id;
-                customer.Store_Id = reservation.PickupStore_Id;
-                db.Customers.Add(customer);
+                vm.Customer.Store_Id = vm.SelectedStore.Id;
+                db.Customers.Add(vm.Customer);
                 db.SaveChanges();
 
-                db.Customers.Find(customer.Id);
+                db.Customers.Find(vm.Customer.Id);
 
-                reservation.Customer = customer;
-                reservation.Customer_Id = customer.Id;
-                reservation.Bike_Id = bike.Id;
+                vm.Reservation.Customer = vm.Customer;
+                vm.Reservation.Customer_Id = vm.Customer.Id;
+                vm.Reservation.Bike_Id = vm.SelectedBike.Id;
+                vm.Reservation.PickupStore_Id = vm.SelectedStore.Id;
 
-                db.Reservations.Add(reservation);
+                db.Reservations.Add(vm.Reservation);
                 db.SaveChanges();
             }
             else
             {
-                customer = existingCustomer;
-                reservation.Customer = customer;
-                reservation.Customer_Id = customer.Id;
-                reservation.Bike_Id = bike.Id;
-                reservation.PickupStore_Id = store.Id;
+                vm.Customer = existingCustomer;
+                vm.Reservation.Customer = vm.Customer;
+                vm.Reservation.Customer_Id = vm.Customer.Id;
+                vm.Reservation.Bike_Id = vm.SelectedBike.Id;
+                vm.Reservation.PickupStore_Id = vm.SelectedStore.Id;
 
-                db.Reservations.Add(reservation);
+                db.Reservations.Add(vm.Reservation);
                 db.SaveChanges();
             }
 
