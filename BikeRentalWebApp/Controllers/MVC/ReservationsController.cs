@@ -17,11 +17,9 @@ namespace BikeRentalWebApp.Controllers.MVC
         private BikeRentalContext db = new BikeRentalContext();
 
         // GET: Reservations
-        public ActionResult Index()
+        public ActionResult Index(string sortOrder)
         {
-            return View(new ReservationsViewModel());
-           
-          
+            return View(new ReservationsViewModel((string)sortOrder));
         }
        
 
