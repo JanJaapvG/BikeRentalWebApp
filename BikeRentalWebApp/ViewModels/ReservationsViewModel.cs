@@ -19,10 +19,49 @@ namespace BikeRentalWebApp.ViewModels
         public Store SelectedStore { get; set; }
         public SelectList Stores { get; set; }
         public Customer Customer { get; set; }
+        public string StoreSort { get;  set; }
+        public string GenderSort { get;  set; }
+        public string TypeSort { get;  set; }
+        public string SortOrder { get;  set; }
 
         public ReservationsViewModel()
-        {
+        { 
             Bikes = _db.Bikes.Include(s => s.Store);
+
+
+            var Bike = from b in _db.Bikes
+                        select b;
+
+            
+
+
+            StoreSort = string.IsNullOrEmpty(SortOrder) ? "Store" : "";
+            GenderSort = SortOrder == "Gender" ? "Gender_desc" : "Gender" ;
+            TypeSort = SortOrder == "Type" ? "Type_desc" : "Type";
+
+           
+
+            switch (SortOrder)
+            {
+                case "Store_desc":
+                    Bike = Bike.OrderByDescending(b => b.Store.Name);
+                    break;
+                case "Gender_desc":
+                    Bike = Bike.OrderByDescending(b => b.Gender);
+                    break;
+                case "Gender":
+                    Bike = Bike.OrderBy(b => b.Gender);
+                    break;
+                case "Type_desc":
+                    Bike = Bike.OrderByDescending(b => b.Type);
+                    break;
+                case "Type":
+                    Bike = Bike.OrderBy(b => b.Type);
+                    break;
+
+            }
+
+           
         }
 
         public ReservationsViewModel(int id) : this()
@@ -31,6 +70,8 @@ namespace BikeRentalWebApp.ViewModels
             SelectedStore = _db.Stores.Find(SelectedBike.Store_Id);
             Stores = new SelectList(_db.Stores, "Id", "Name");
         }
+
+        
 
         //public void Save()
         //{

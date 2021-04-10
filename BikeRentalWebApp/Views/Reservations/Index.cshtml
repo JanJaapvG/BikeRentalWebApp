@@ -3,22 +3,26 @@
 <h2>Kies hier uw winkel en fiets</h2>
 <table class="table">
     <tr>
-    @*<tr>
+    <tr>
         <th>
-            @Html.ActionLink("Store", "Index", new { sortOrder = Model.StoreSort })
+            @Html.ActionLink("Winkel", "Index", new { sortOrder = Model.StoreSort })
         </th>
         <th>
-            Winkel
+            Naam
         </th>
         <th>
-            @Html.ActionLink("Gender", "Index", new { sortOrder = Model.GenderSort })
+            @Html.ActionLink("Geslacht", "Index", new { sortOrder = Model.GenderSort })
         </th>
-        <th>Geslacht</th>
         <th>
-            @Html.ActionLink("BikeType", "Index", new { sortOrder = Model.BikeTypeSort })
+            @Html.ActionLink("Type", "Index", new { sortOrder = Model.TypeSort })
         </th>
-        <th>Type</th>]
-    </tr>*@
+        <th>
+           Dagtarief
+        </th>
+        <th>
+            Uurtarief
+        </th>
+    </tr>
 
     @foreach (var item in Model.Bikes)
     {

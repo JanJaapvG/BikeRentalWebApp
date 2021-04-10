@@ -20,7 +20,10 @@ namespace BikeRentalWebApp.Controllers.MVC
         public ActionResult Index()
         {
             return View(new ReservationsViewModel());
+           
+          
         }
+       
 
         // GET: Reservations/Details/5
         public ActionResult Details(int? id)
