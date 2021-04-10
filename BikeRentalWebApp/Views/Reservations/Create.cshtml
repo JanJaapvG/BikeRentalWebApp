@@ -13,7 +13,7 @@
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
     <div class="form-group">
-        @Html.LabelFor(model => model.Reservation.Bike, htmlAttributes: new { @class = "control-label col-md-2" })
+        @Html.LabelFor(model => model.Reservation.Bike_Id, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
             @Html.DisplayFor(model => model.SelectedBike.Name, Model.SelectedBike)
             @Html.HiddenFor(model => model.SelectedBike.Id)
@@ -44,7 +44,7 @@
     </div>
 
     <div class="form-group">
-        @Html.LabelFor(model => model.Reservation.PickupStore, htmlAttributes: new { @class = "control-label col-md-2" })
+        @Html.LabelFor(model => model.Reservation.PickupStore_Id, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
             @Html.DisplayFor(model => model.SelectedStore.Name, Model.SelectedStore)
             @Html.HiddenFor(model => model.SelectedStore.Id)
@@ -52,13 +52,12 @@
     </div>
 
     <div class="form-group">
-        @Html.LabelFor(model => model.Reservation.DropoffStore, htmlAttributes: new { @class = "control-label col-md-2" })
+        @Html.LabelFor(model => model.Reservation.DropoffStore_Id, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
             @Html.DropDownListFor(model => model.Reservation.DropoffStore_Id, Model.Stores, htmlAttributes: new { @class = "form-control" })
-            @Html.ValidationMessageFor(model => model.Reservation.DropoffStore, "", new { @class = "text-danger" })
+            @Html.ValidationMessageFor(model => model.Reservation.DropoffStore_Id, "", new { @class = "text-danger" })
         </div>
     </div>
-
 
     <p>Vul hier uw klantgegevens in:</p>
     <div class="form-group">
