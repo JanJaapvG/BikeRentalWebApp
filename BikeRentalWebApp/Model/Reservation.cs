@@ -26,7 +26,7 @@ namespace BikeRental.Model
         [ForeignKey("Bike")]
         [DisplayName("Fiets")]
         public int Bike_Id { get; set; }
-        public Bike Bike { get; set; }
+        public virtual Bike Bike { get; set; }
 
         [Required]
         [ForeignKey("Customer")]
@@ -39,13 +39,13 @@ namespace BikeRental.Model
         [ForeignKey("DropoffStore")]
         [DisplayName("Inlever winkel")]
         public int DropoffStore_Id { get; set; }
-        public Store DropoffStore { get; set; }
+        public virtual Store DropoffStore { get; set; }
 
         [Required]
         [ForeignKey("PickupStore")]
         [DisplayName("Afhaal winkel")]
         public int PickupStore_Id { get; set; }
-        public Store PickupStore { get; set; }
+        public virtual Store PickupStore { get; set; }
 
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {

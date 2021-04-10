@@ -1,66 +1,39 @@
-﻿@model BikeRental.Model.Reservation
-
+﻿@model BikeRentalWebApp.ViewModels.ReservationsViewModel
 @{
     ViewBag.Title = "Details";
+    var id = ViewBag.Id;
 }
 
-<h2>Details</h2>
+<h1>Uw reserveringen</h1>
 
-<div>
-    <h4>Reservation</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Bike.Name)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Bike.Name)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Customer.FirstName)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Customer.FirstName)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.DropoffStore.Name)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.DropoffStore.Name)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.PickupStore.Name)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.PickupStore.Name)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Start)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Start)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.End)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.End)
-        </dd>
-
-    </dl>
-</div>
+<table class="table" id="reservationsData">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Reservation.Bike_Id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Reservation.PickupStore_Id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Reservation.DropoffStore_Id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Reservation.Start)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Reservation.End)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Reservation.Bike.DailyRate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Reservation.Bike.HourRate)
+        </th>
+    </tr>
+</table>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Terug naar de homepagina", "../Home/Index")
 </p>
+
+<script src="~/Scripts/ApiReservationCall.js"></script>
+<script type="text/javascript"> getCustomerReservations(@id) </script>

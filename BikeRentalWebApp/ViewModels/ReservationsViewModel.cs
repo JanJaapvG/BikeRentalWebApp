@@ -55,8 +55,6 @@ namespace BikeRentalWebApp.ViewModels
                     Bikes = Bikes.OrderBy(b => b.Type);
                     break;
             }
-
-           
         }
 
         public ReservationsViewModel(int id) : this()
@@ -66,34 +64,37 @@ namespace BikeRentalWebApp.ViewModels
             Stores = new SelectList(_db.Stores, "Id", "Name");
         }
 
-        
+        public void Save()
+        {
+            Customer existingCustomer = _db.Customers.Where(e => e.Email == Customer.Email).FirstOrDefault();
+            if (existingCustomer == null)
+            {
+                Customer.Store_Id = SelectedStore.Id;
+                _db.Customers.Add(Customer);
+                _db.SaveChanges();
 
-        //public void Save()
-        //{
-        //    Customer existingCustomer = (Customer)_db.Customers.Where(e => e.Email == Customer.Email).FirstOrDefault();
-        //    if (existingCustomer == null)
-        //    {
-        //        Customer.Store_Id = Reservation.PickupStore_Id;
-        //        _db.Customers.Add(Customer);
-        //        _db.SaveChanges();
+                _db.Customers.Find(Customer.Id);
 
-        //        _db.Customers.Find(Customer.Id);
+                Reservation.Customer = Customer;
+                Reservation.Customer_Id = Customer.Id;
+                Reservation.Bike_Id = SelectedBike.Id;
+                Reservation.PickupStore_Id = SelectedStore.Id;
 
-        //        Reservation.Customer = Customer;
-        //        Reservation.Customer_Id = Customer.Id;
+                _db.Reservations.Add(Reservation);
+                _db.SaveChanges();
+            }
+            else
+            {
+                Customer = existingCustomer;
+                Reservation.Customer = Customer;
+                Reservation.Customer_Id = Customer.Id;
+                Reservation.Bike_Id = SelectedBike.Id;
+                Reservation.PickupStore_Id = SelectedStore.Id;
 
-        //        _db.Reservations.Add(Reservation);
-        //        _db.SaveChanges();
-        //    }
-        //    else
-        //    {
-        //        Customer = existingCustomer;
-        //        Reservation.Customer = Customer;
-        //        Reservation.Customer_Id = Customer.Id;
+                _db.Reservations.Add(Reservation);
+                _db.SaveChanges();
 
-        //        _db.Reservations.Add(Reservation);
-        //        _db.SaveChanges();
-        //    }
-        //}
+            }
+        }
     }
 }
