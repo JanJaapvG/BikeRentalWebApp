@@ -22,7 +22,6 @@ namespace BikeRentalWebApp.ViewModels
         public string StoreSort { get;  set; }
         public string GenderSort { get;  set; }
         public string TypeSort { get;  set; }
-        public string sortOrder { get;  set; }
 
         public ReservationsViewModel()
         {
