@@ -47,6 +47,10 @@ namespace BikeRental.Model
         public int PickupStore_Id { get; set; }
         public virtual Store PickupStore { get; set; }
 
+
+        [DisplayName("Totaal prijs")]
+        public double TotalPrice { get; set; }
+
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {
             if (End < Start)

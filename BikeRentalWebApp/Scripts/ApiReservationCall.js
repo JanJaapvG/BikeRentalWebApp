@@ -20,8 +20,7 @@ function getCustomerReservations(id) {
                     <td>${obj.DropoffStore.Name}</td>
                     <td>${obj.Start}</td>
                     <td>${obj.End}</td>
-                    <td>${obj.Bike.DailyRate}</td>
-                    <td>${obj.Bike.HourRate}</td></tr>`
+                    <td>${obj.TotalPrice}</td></tr>`
         }
     }
 }

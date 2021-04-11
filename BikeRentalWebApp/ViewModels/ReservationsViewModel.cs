@@ -79,6 +79,7 @@ namespace BikeRentalWebApp.ViewModels
                 Reservation.Customer_Id = Customer.Id;
                 Reservation.Bike_Id = SelectedBike.Id;
                 Reservation.PickupStore_Id = SelectedStore.Id;
+                Reservation.TotalPrice = ((Reservation.End - Reservation.Start).TotalDays * _db.Bikes.Find(SelectedBike.Id).DailyRate);
 
                 _db.Reservations.Add(Reservation);
                 _db.SaveChanges();
@@ -89,7 +90,8 @@ namespace BikeRentalWebApp.ViewModels
                 Reservation.Customer = Customer;
                 Reservation.Customer_Id = Customer.Id;
                 Reservation.Bike_Id = SelectedBike.Id;
-                Reservation.PickupStore_Id = SelectedStore.Id;
+                Reservation.PickupStore_Id = SelectedStore.Id; 
+                Reservation.TotalPrice = ((Reservation.End - Reservation.Start).TotalDays * _db.Bikes.Find(SelectedBike.Id).DailyRate);
 
                 _db.Reservations.Add(Reservation);
                 _db.SaveChanges();
